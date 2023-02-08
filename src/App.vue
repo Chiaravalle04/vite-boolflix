@@ -64,7 +64,7 @@ export default {
     <h2>Voto: {{ convertNumber(store.resultsMovie[index].vote_average) }}</h2>
     <span v-for="n in 5">
       <i 
-      :class="{'fa-solid': n <= convertNumber(store.resultsMovie[index].vote_average), 'fa-regular': !(n <= convertNumber(store.resultsMovie[index].vote_average)) }" class="fa-star"></i>
+      :class="{'fa-solid': n <= convertNumber(store.resultsMovie[index].vote_average), 'fa-regular': 5 - convertNumber(store.resultsMovie[index].vote_average) }" class="fa-star"></i>
     </span>
     <hr>
   </div>
@@ -84,7 +84,7 @@ export default {
     <h2>Voto: {{ convertNumber(store.resultsSeries[index].vote_average) }}</h2>
     <span v-for="n in 5">
       <i 
-      :class="{'fa-solid': n <= convertNumber(store.resultsSeries[index].vote_average), 'fa-regular': !(n <= convertNumber(store.resultsSeries[index].vote_average)) }" class="fa-star"></i>
+      :class="{'fa-solid': n <= convertNumber(store.resultsSeries[index].vote_average), 'fa-regular': 5 - convertNumber(store.resultsSeries[index].vote_average) }" class="fa-star"></i>
     </span>
     <hr>
   </div>
