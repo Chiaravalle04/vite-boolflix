@@ -30,6 +30,10 @@ export default {
       })
     },
 
+    convertNumber(num) {
+      return Math.round(num / 2)
+    }
+
   },
 
   created() {
@@ -47,6 +51,7 @@ export default {
 
   <div class="feature-movies" v-for="(item, index) in store.resultsMovie">
     <h2>Movie</h2>
+    <img :src="'https://image.tmdb.org/t/p/w342' + store.resultsMovie[index].poster_path" alt="Immagine non disponibile">
     <h2>Titolo : {{ store.resultsMovie[index].title }}</h2>
     <h2>Titolo originale: {{ store.resultsMovie[index].original_title }}</h2>
 
@@ -56,12 +61,17 @@ export default {
       <span :class="'fi' + ' ' + 'fi-' + store.resultsMovie[index].original_language" v-else></span>
     </div>
 
-    <h2>Voto: {{ store.resultsMovie[index].vote_average }}</h2>
+    <h2>Voto: {{ convertNumber(store.resultsMovie[index].vote_average) }}</h2>
+    <span v-for="n in 5">
+      <i 
+      :class="{'fa-solid': n <= convertNumber(store.resultsMovie[index].vote_average), 'fa-regular': !(n <= convertNumber(store.resultsMovie[index].vote_average)) }" class="fa-star"></i>
+    </span>
     <hr>
   </div>
 
   <div class="feature-movies" v-for="(item, index) in store.resultsSeries">
     <h2>Series</h2>
+    <img :src="'https://image.tmdb.org/t/p/w342' + store.resultsSeries[index].poster_path" alt="Immagine non disponibile">
     <h2>Titolo : {{ store.resultsSeries[index].name }}</h2>
     <h2>Titolo originale: {{ store.resultsSeries[index].original_name }}</h2>
 
@@ -71,7 +81,11 @@ export default {
       <span :class="'fi' + ' ' + 'fi-' + store.resultsSeries[index].original_language" v-else></span>
     </div>
 
-    <h2>Voto: {{ store.resultsSeries[index].vote_average }}</h2>
+    <h2>Voto: {{ convertNumber(store.resultsSeries[index].vote_average) }}</h2>
+    <span v-for="n in 5">
+      <i 
+      :class="{'fa-solid': n <= convertNumber(store.resultsSeries[index].vote_average), 'fa-regular': !(n <= convertNumber(store.resultsSeries[index].vote_average)) }" class="fa-star"></i>
+    </span>
     <hr>
   </div>
 
