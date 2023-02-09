@@ -26,7 +26,7 @@ export default {
 
         <div class="main-container">
 
-            <h2>Film</h2>
+            <h2>Film <i class="fa-solid fa-star"></i></h2>
 
             <div class="cards d-flex">
 

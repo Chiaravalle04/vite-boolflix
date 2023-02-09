@@ -6,7 +6,8 @@ export default {
 
   data() {
     return {
-        store,
+      store,
+      inHover: false,
     }
   },
 
@@ -23,20 +24,23 @@ export default {
 <template>
 
     <div class="card d-flex jc-center" v-for="(item, index) in store.resultsSeries">
-      <img :src="'https://image.tmdb.org/t/p/w342' + store.resultsSeries[index].poster_path" alt="Immagine non disponibile">
-      <!-- <h2>Titolo : {{ store.resultsSeries[index].name }}</h2>
-      <h2>Titolo originale: {{ store.resultsSeries[index].original_name }}</h2>
+      <img :src="'https://image.tmdb.org/t/p/w342' + item.poster_path" alt="Immagine non disponibile" v-if="inHover === false">
+      
+      <div class="feature" v-else>
+        <h2>Titolo : {{ item.name }}</h2>
+        <h2>Titolo originale: {{ item.original_name }}</h2>
 
-      <div class="container-languages">
-      <h2>Lingua originale:</h2>
-      <span :class="'fi' + ' ' + 'fi-' + 'gb'" v-if="store.resultsSeries[index].original_language == 'en'"></span>
-      <span :class="'fi' + ' ' + 'fi-' + store.resultsSeries[index].original_language" v-else></span>
+        <div class="container-languages">
+        <h2>Lingua originale:</h2>
+        <span class="fi fi-gb" v-if="item.original_language == 'en'"></span>
+        <span :class="'fi' + ' ' + 'fi-' + item.original_language" v-else></span>
+        </div>
+
+        <h2>Voto: {{ convertNumber(item.vote_average) }}</h2>
+        <span v-for="n in 5">
+        <i :class="{'fa-solid': n <= convertNumber(item.vote_average), 'fa-regular': 5 - convertNumber(item.vote_average) }" class="fa-star"></i>
+        </span>
       </div>
-
-      <h2>Voto: {{ convertNumber(store.resultsSeries[index].vote_average) }}</h2>
-      <span v-for="n in 5">
-      <i :class="{'fa-solid': n <= convertNumber(store.resultsSeries[index].vote_average), 'fa-regular': 5 - convertNumber(store.resultsSeries[index].vote_average) }" class="fa-star"></i>
-      </span> -->
     </div>
 
 </template>

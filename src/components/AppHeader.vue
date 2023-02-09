@@ -14,8 +14,19 @@ export default {
 
   methods: {
     searchMovies() {
+
+      let myAPIMovie = 'https://api.themoviedb.org/3/search/movie';
+
+      let myAPISeries = 'https://api.themoviedb.org/3/search/tv';
+
       axios
-      .get('https://api.themoviedb.org/3/search/movie?api_key=9983fafc12ef7399a4bba69d8af1689f&query=' + this.store.searchMovies )
+      .get(myAPIMovie, {
+        params: {
+          api_key: '9983fafc12ef7399a4bba69d8af1689f',
+          query: this.store.searchMovies,
+          language: 'it-IT'
+        }
+      })
       .then((response) => {
         console.log(response.data)
         this.store.resultsMovie = response.data.results;
@@ -23,12 +34,19 @@ export default {
       })
 
       axios
-      .get('https://api.themoviedb.org/3/search/tv?api_key=9983fafc12ef7399a4bba69d8af1689f&query=' + this.store.searchMovies )
+      .get(myAPISeries, {
+        params: {
+          api_key: '9983fafc12ef7399a4bba69d8af1689f',
+          query: this.store.searchMovies,
+          language: 'it-IT'
+        }
+      })
       .then((response) => {
         console.log('series',response)
         this.store.resultsSeries = response.data.results
         console.log('arrayseries', this.store.resultsSeries)
       })
+
     },
 
     convertNumber(num) {
@@ -48,7 +66,7 @@ export default {
             <img :src="logo" alt="Netflix Logo">
 
             <div class="search-input d-flex">
-                <input type="search" placeholder="Cerca un film o una serie tv..." v-model="store.searchMovies">
+                <input @keyup.enter="searchMovies()" type="search" placeholder="Cerca un film o una serie tv..." v-model="store.searchMovies">
                 <button type="button" @click="searchMovies()">Cerca</button>
             </div>
 
