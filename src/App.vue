@@ -24,7 +24,7 @@ export default {
 <template>
 
   <AppHeader/>
-  <i class="fa-solid fa-star"></i>
+  
   <AppMain/>
 
 </template>

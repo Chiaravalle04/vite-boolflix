@@ -7,8 +7,8 @@ export default {
   data() {
     return {
       store,
-      inHover: false,
-
+      basicUrlImg: 'https://image.tmdb.org/t/p/w342',
+      inHover: null,
     }
   },
 
@@ -16,6 +16,14 @@ export default {
 
     convertNumber(num) {
       return Math.round(num / 2)
+    },
+
+    inHoverFunction (index) {
+      if (this.inHover === index) {
+        this.inHover = null;
+      } else {
+        this.inHover = index;
+      }
     }
 
   },
@@ -24,17 +32,18 @@ export default {
 
 <template>
 
-  <div class="card d-flex jc-center" v-for="(item, index) in store.resultsMovie" @mouseenter="inHover = true" @mouseleave="inHover = false"> 
-    <img :src="'https://image.tmdb.org/t/p/w342' + item.poster_path" alt="Immagine non disponibile" v-if="inHover === false">
+  <div class="card d-flex jc-center" v-for="(item, index) in store.resultsMovie" @mouseenter="inHoverFunction(index)" @mouseleave="inHoverFunction(index)"> 
+    
+    <img :src="basicUrlImg + item.poster_path" alt="Immagine non disponibile" v-show="inHover !== index">
 
-    <div class="feature" v-else>
+    <div class="feature" v-if="inHover === index">
       <h2>Titolo : {{ item.title }}</h2>
       <h2>Titolo originale: {{ item.original_title }}</h2>
   
       <div class="container-languages">
       <h2>Lingua originale:</h2>
       <span class="fi fi-gb" v-if="item.original_language == 'en'"></span>
-      <span :class="'fi' + ' ' + 'fi-' + item.original_language" v-else></span>
+      <span :class="`fi fi-${item.original_language}`" v-else></span>
       </div>
   
       <h2>Voto: {{ convertNumber(item.vote_average) }}</h2>
@@ -42,6 +51,7 @@ export default {
       <i :class="{'fa-solid': n <= convertNumber(item.vote_average), 'fa-regular': 5 - convertNumber(item.vote_average) }" class="fa-star"></i>
       </span>
     </div>
+
   </div>
 
 </template>
@@ -49,6 +59,7 @@ export default {
 <style lang="scss" scoped>
 .card {
   width: calc(100% / 4 - 20px);
+  // height: 511.2px;
   margin: 10px;
   img {
     width: 100%;
