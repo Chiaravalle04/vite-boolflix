@@ -11,6 +11,7 @@ export default {
       logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png',
       active: false,
     }
+    
   },
 
   methods: {
@@ -54,6 +55,10 @@ export default {
       return Math.round(num / 2)
     },
 
+    reload () {
+      location.reload()
+    },
+
   },
 
 }
@@ -65,7 +70,7 @@ export default {
 
       <div class="main-container d-flex ai-center">
 
-          <img :src="logo" alt="Netflix Logo">
+          <img :src="logo" alt="Netflix Logo" @click="reload()">
 
           <div class="search-input d-flex ai-center">
               <i class="fa-solid fa-magnifying-glass" @click="active = true" v-if="active === false"></i>
@@ -91,7 +96,8 @@ header {
     height: 100%;
     justify-content: space-between;
     img {
-        width: 10%;
+      width: 10%;
+      cursor: pointer;
     }
     .search-input {
       i {

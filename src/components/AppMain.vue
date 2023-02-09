@@ -1,7 +1,8 @@
 <script>
 import {store} from '../store.js';
-import AppCardsMovies from './AppCardsMovies.vue'
-import AppCardsSeries from './AppCardsSeries.vue'
+import AppCardsMovies from './AppCardsMovies.vue';
+import AppCardsSeries from './AppCardsSeries.vue';
+import AppIntro from './AppIntro.vue';
 
 export default {
     name: 'AppMain',
@@ -9,6 +10,7 @@ export default {
     components: {
         AppCardsMovies,
         AppCardsSeries,
+        AppIntro,
     },
 
     data() {
@@ -80,6 +82,8 @@ export default {
 
     <main>
 
+        <AppIntro v-if="store.resultsMovie.length == 0"/>
+
         <div class="main-container">
 
             <h2 v-if="store.resultsMovie.length > 0">Film</h2>
@@ -90,7 +94,7 @@ export default {
 
                 <AppCardsMovies/>
 
-                <button id="next" @click="nextSlide()" v-if="store.resultsMovie.length > 0"><i class="fa-solid fa-chevron-right"></i></button>
+                <button id="next" @click="nextSlide()" v-if="store.resultsMovie.length > 4"><i class="fa-solid fa-chevron-right"></i></button>
 
             </div>
 
@@ -102,7 +106,7 @@ export default {
 
                 <AppCardsSeries/>
 
-                <button id="next" @click="nextSlideSeries()" v-if="store.resultsSeries.length > 0"><i class="fa-solid fa-chevron-right"></i></button>
+                <button id="next" @click="nextSlideSeries()" v-if="store.resultsSeries.length > 4"><i class="fa-solid fa-chevron-right"></i></button>
 
             </div>
 

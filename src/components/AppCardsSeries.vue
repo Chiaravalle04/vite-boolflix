@@ -34,7 +34,9 @@ export default {
 
     <div class="card d-flex jc-center" v-for="(item, index) in store.resultsSeries.slice(store.firstCardSeries, store.lastCardSeries)" @mouseenter="inHoverFunction(index)" @mouseleave="inHoverFunction(index)">
       
-      <img :src="basicUrlImg + item.poster_path" alt="Immagine non disponibile" v-show="inHover !== index">
+      <img :src="basicUrlImg + item.poster_path" alt="Immagine non disponibile" v-show="inHover !== index" v-if="item.poster_path !== null">
+
+      <img src="https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg" alt="" v-show="inHover !== index" v-else>
       
       <div class="feature" v-if="inHover === index">
         
