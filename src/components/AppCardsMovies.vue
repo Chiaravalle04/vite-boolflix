@@ -32,7 +32,7 @@ export default {
 
 <template>
 
-  <div class="card d-flex jc-center" v-for="(item, index) in store.resultsMovie" @mouseenter="inHoverFunction(index)" @mouseleave="inHoverFunction(index)"> 
+  <div class="card" v-for="(item, index) in store.resultsMovie.slice(store.firstCard, store.lastCard)" @mouseenter="inHoverFunction(index)" @mouseleave="inHoverFunction(index)"> 
     
     <img :src="basicUrlImg + item.poster_path" alt="Immagine non disponibile" v-show="inHover !== index">
 
@@ -63,26 +63,27 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  width: calc(100% / 4 - 20px);
+  width: 300px;
   margin: 10px;
-  height: 512px;
+  height: 450px;
   transition: transform 0.9s ease-in-out;
   &:hover {
     transform: rotateY(180deg);
   }
   img {
-    width: 100%;
+    width: 300px;
+    height: 450px;
   }
   .feature {
-    width: 100%;
-    height: 512px;
+    width: 300px;
+    height: 450px;
     padding: 15px;
     color: #fff;
     border: 2px solid #fff;
     writing-mode: horizontal-tb;
     transform: rotateY(180deg);
     p {
-      max-height: 320px;
+      max-height: 270px;
       overflow: auto;
     }
     h2, h4 {

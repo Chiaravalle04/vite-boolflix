@@ -1,3 +1,18 @@
+// Scrollbar
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+background-color: $secondColor;
+}
+
+::-webkit-scrollbar-thumb {
+background-color: $mainColor; 
+border-radius: 10px;
+}
+
 /*
 
 Regole Generali

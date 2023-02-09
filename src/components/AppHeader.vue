@@ -7,8 +7,9 @@ export default {
 
   data() {
     return {
-        store,
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png',
+      store,
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png',
+      active: false,
     }
   },
 
@@ -19,7 +20,7 @@ export default {
 
       let myAPISeries = 'https://api.themoviedb.org/3/search/tv';
 
-      axios
+      axios // chiamata film
       .get(myAPIMovie, {
         params: {
           api_key: '9983fafc12ef7399a4bba69d8af1689f',
@@ -33,7 +34,7 @@ export default {
         console.log('movies', this.store.resultsMovie)
       })
 
-      axios
+      axios // chiamata serie TV
       .get(myAPISeries, {
         params: {
           api_key: '9983fafc12ef7399a4bba69d8af1689f',
@@ -51,9 +52,10 @@ export default {
 
     convertNumber(num) {
       return Math.round(num / 2)
-    }
+    },
 
   },
+
 }
 </script>
 
@@ -61,16 +63,16 @@ export default {
 
     <header>
 
-        <div class="main-container d-flex ai-center">
+      <div class="main-container d-flex ai-center">
 
-            <img :src="logo" alt="Netflix Logo">
+          <img :src="logo" alt="Netflix Logo">
 
-            <div class="search-input d-flex">
-                <input @keyup.enter="searchMovies()" type="search" placeholder="Cerca un film o una serie tv..." v-model="store.searchMovies">
-                <button type="button" @click="searchMovies()">Cerca</button>
-            </div>
+          <div class="search-input d-flex ai-center">
+              <i class="fa-solid fa-magnifying-glass" @click="active = true" v-if="active === false"></i>
+              <input @keyup.enter="searchMovies()" type="search" placeholder="Cerca un film o una serie tv..." v-model="store.searchMovies" v-else>
+          </div>
 
-        </div>
+      </div>
 
     </header>
 
@@ -78,36 +80,31 @@ export default {
 
 <style lang="scss" scoped>
 header {
-    height: 80px;
-    background-color: $secondColor;
-    .main-container {
-        height: 100%;
-        justify-content: space-between;
-        img {
-            width: 10%;
-        }
-        .search-input {
-            input {
-                display: block;
-                width: 250px;
-                height: 40px;
-                padding: 15px;
-                border-radius: 15px;
-                &:focus {
-                    outline: none;
-                }
-            }
-            button {
-                display: block;
-                width: 70px;
-                border-radius: 15px;
-                margin-left: 7px;
-                background-color: $mainColor;
-                color: $colorText;
-                font-weight: bold;
-                cursor: pointer;
-            }
-        }
+  height: 80px;
+  background-color: $secondColor;
+  .main-container {
+    height: 100%;
+    justify-content: space-between;
+    img {
+        width: 10%;
     }
+    .search-input {
+      i {
+        color: $colorText;
+        font-size: 25px;
+        cursor: pointer;
+      }
+      input {
+          display: block;
+          width: 250px;
+          height: 40px;
+          padding: 15px;
+          border-radius: 15px;
+          &:focus {
+              outline: none;
+          }
+      }
+    }
+  }
 }
 </style>
