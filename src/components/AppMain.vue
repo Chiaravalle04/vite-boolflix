@@ -84,7 +84,7 @@ export default {
 
             <h2 v-if="store.resultsMovie.length > 0">Film</h2>
 
-            <div class="cards d-flex jc-center ai-center">
+            <div class="cards d-flex jc-center ai-center" v-if="store.resultsMovie.length > 0">
 
                 <button id="prev" @click="prevSlide()" v-if="store.firstCard > 0"><i class="fa-solid fa-chevron-left"></i></button>
 
@@ -96,7 +96,7 @@ export default {
 
             <h2 v-if="store.resultsSeries.length > 0">Serie TV</h2>
 
-            <div class="cards d-flex jc-center ai-center">
+            <div class="cards d-flex jc-center ai-center" v-if="store.resultsSeries.length > 0">
 
                 <button id="prev" @click="prevSlideSeries()" v-if="store.firstCardSeries > 0"><i class="fa-solid fa-chevron-left"></i></button>
 
@@ -114,12 +114,15 @@ export default {
 
 <style lang="scss" scoped>
 main {
-    min-height: calc(100vh - 80px);
+    min-height: 100vh;
+    padding: 90px 0 20px 0;
     background-color: $secondColor;
     h2 {
         color: $colorText;
     }
     .cards {
+        height: 500px;
+        margin: 50px 0;
         position: relative;
         button {
             width: 70px;

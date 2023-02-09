@@ -80,8 +80,13 @@ export default {
 
 <style lang="scss" scoped>
 header {
+  width: 100%;
   height: 80px;
   background-color: $secondColor;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
   .main-container {
     height: 100%;
     justify-content: space-between;
