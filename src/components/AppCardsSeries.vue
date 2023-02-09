@@ -33,23 +33,30 @@ export default {
 <template>
 
     <div class="card d-flex jc-center" v-for="(item, index) in store.resultsSeries" @mouseenter="inHoverFunction(index)" @mouseleave="inHoverFunction(index)">
+      
       <img :src="basicUrlImg + item.poster_path" alt="Immagine non disponibile" v-show="inHover !== index">
       
       <div class="feature" v-if="inHover === index">
-        <h2>Titolo : {{ item.name }}</h2>
-        <h2>Titolo originale: {{ item.original_name }}</h2>
+        
+        <h2>{{ item.name }}</h2>
+        
+        <p>{{ item.overview }}</p>
 
-        <div class="container-languages">
-        <h2>Lingua originale:</h2>
-        <span class="fi fi-gb" v-if="item.original_language == 'en'"></span>
-        <span :class="`fi fi-${item.original_language}`" v-else></span>
-        </div>
+        <h4>
+          Lingua originale:
+          <span class="fi fi-gb" v-if="item.original_language == 'en'"></span>
+          <span :class="`fi fi-${item.original_language}`" v-else></span>
+        </h4>
 
-        <h2>Voto: {{ convertNumber(item.vote_average) }}</h2>
-        <span v-for="n in 5">
-        <i :class="{'fa-solid': n <= convertNumber(item.vote_average), 'fa-regular': 5 - convertNumber(item.vote_average) }" class="fa-star"></i>
-        </span>
+        <h4>
+          Valutazione:
+          <span v-for="n in 5">
+          <i :class="{'fa-solid': n <= convertNumber(item.vote_average), 'fa-regular': 5 - convertNumber(item.vote_average) }" class="fa-star"></i>
+          </span>
+        </h4>
+
       </div>
+
     </div>
 
 </template>
@@ -58,14 +65,29 @@ export default {
 .card {
   width: calc(100% / 4 - 20px);
   margin: 10px;
+  height: 512px;
+  transition: transform 0.9s ease-in-out;
+  &:hover {
+    transform: rotateY(180deg);
+  }
   img {
     width: 100%;
   }
   .feature {
     width: 100%;
-    height: 511.2px;
+    height: 512px;
+    padding: 15px;
     color: #fff;
     border: 2px solid #fff;
+    writing-mode: horizontal-tb;
+    transform: rotateY(180deg);
+    p {
+      max-height: 320px;
+      overflow: auto;
+    }
+    h2, h4 {
+      margin: 10px 0;
+    }
   }
 }
 </style>
