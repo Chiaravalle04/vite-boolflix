@@ -23,7 +23,7 @@ export default {
 
 <template>
 
-    <div class="card d-flex jc-center" v-for="(item, index) in store.resultsSeries.slice(store.firstCardSeries, store.lastCardSeries)" @mouseenter="inHoverFunction(index)" @mouseleave="inHoverFunction(index)">
+    <div class="card d-flex jc-center" v-for="(item, index) in store.resultsSeries.slice(store.firstCardSeries, store.lastCardSeries)">
       
       <div class="card-inner">
 

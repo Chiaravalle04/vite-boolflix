@@ -23,7 +23,7 @@ export default {
 
 <template>
 
-  <div class="card" v-for="(item, index) in store.resultsMovie.slice(store.firstCard, store.lastCard)" @mouseenter="inHoverFunction(index)" @mouseleave="inHoverFunction(index)"> 
+  <div class="card" v-for="(item, index) in store.resultsMovie.slice(store.firstCard, store.lastCard)"> 
 
     <div class="card-inner">
 
