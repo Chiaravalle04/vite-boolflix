@@ -70,12 +70,12 @@ export default {
 
       <div class="main-container d-flex ai-center">
 
-          <img :src="logo" alt="Netflix Logo" @click="reload()">
+        <img :src="logo" alt="Netflix Logo" @click="reload()">
 
-          <div class="search-input d-flex ai-center">
-              <i class="fa-solid fa-magnifying-glass" @click="active = true" v-if="active === false"></i>
-              <input @keyup.enter="searchMovies()" type="search" placeholder="Cerca un film o una serie tv..." v-model="store.searchMovies" v-else>
-          </div>
+        <div class="search-input d-flex ai-center">
+            <i class="fa-solid fa-magnifying-glass" @click="active = true" v-if="active === false"></i>
+            <input @keyup.enter="searchMovies()" type="search" placeholder="Cerca un film o una serie tv..." v-model="store.searchMovies" v-else>
+        </div>
 
       </div>
 
@@ -92,6 +92,7 @@ header {
   top: 0;
   left: 0;
   z-index: 2;
+  box-shadow: 0px 0px 18px 3px $mainColor;
   .main-container {
     height: 100%;
     justify-content: space-between;

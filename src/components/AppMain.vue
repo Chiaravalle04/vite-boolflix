@@ -1,16 +1,14 @@
 <script>
 import {store} from '../store.js';
-import AppCardsMovies from './AppCardsMovies.vue';
-import AppCardsSeries from './AppCardsSeries.vue';
+import ContainerCard from './ContainerCard.vue';
 import AppIntro from './AppIntro.vue';
 
 export default {
     name: 'AppMain',
 
     components: {
-        AppCardsMovies,
-        AppCardsSeries,
         AppIntro,
+        ContainerCard,
     },
 
     data() {
@@ -18,62 +16,6 @@ export default {
             store,
         }
     },
-
-    methods: {
-
-        nextSlide() {
-
-            if (this.store.lastCard >= this.store.resultsMovie.length - 1) {
-
-                this.store.firstCard = 0;
-
-                this.store.lastCard = 4;
-
-            } else {
-
-                this.store.firstCard++;
-
-                this.store.lastCard++;
-
-            }
-
-        },
-
-        prevSlide() {
-
-            this.store.firstCard--;
-
-            this.store.lastCard--;
-
-        },
-
-        nextSlideSeries() {
-
-            if (this.store.lastCardSeries >= this.store.resultsSeries.length - 1) {
-
-                this.store.firstCardSeries = 0;
-
-                this.store.lastCardSeries = 4;
-
-            } else {
-
-                this.store.firstCardSeries++;
-
-                this.store.lastCardSeries++;
-
-            }
-
-        },
-
-        prevSlideSeries() {
-
-            this.store.firstCardSeries--;
-
-            this.store.lastCardSeries--;
-
-        },
-
-    }
 
 }
 </script>
@@ -86,29 +28,7 @@ export default {
 
         <div class="main-container">
 
-            <h2 v-if="store.resultsMovie.length > 0">Film</h2>
-
-            <div class="cards d-flex jc-center ai-center" v-if="store.resultsMovie.length > 0">
-
-                <button id="prev" @click="prevSlide()" v-if="store.firstCard > 0"><i class="fa-solid fa-chevron-left"></i></button>
-
-                <AppCardsMovies/>
-
-                <button id="next" @click="nextSlide()" v-if="store.resultsMovie.length > 4"><i class="fa-solid fa-chevron-right"></i></button>
-
-            </div>
-
-            <h2 v-if="store.resultsSeries.length > 0">Serie TV</h2>
-
-            <div class="cards d-flex jc-center ai-center" v-if="store.resultsSeries.length > 0">
-
-                <button id="prev" @click="prevSlideSeries()" v-if="store.firstCardSeries > 0"><i class="fa-solid fa-chevron-left"></i></button>
-
-                <AppCardsSeries/>
-
-                <button id="next" @click="nextSlideSeries()" v-if="store.resultsSeries.length > 4"><i class="fa-solid fa-chevron-right"></i></button>
-
-            </div>
+            <ContainerCard v-if="store.resultsMovie.length > 0"/>
 
         </div>
 
@@ -119,39 +39,7 @@ export default {
 <style lang="scss" scoped>
 main {
     min-height: 100vh;
-    padding: 90px 0 20px 0;
+    padding: 80px 0 10px 0;
     background-color: $secondColor;
-    h2 {
-        color: $colorText;
-    }
-    .cards {
-        height: 500px;
-        margin: 50px 0;
-        position: relative;
-        button {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background-color: transparent;
-            border: 0;
-            color: $mainColor;
-            cursor: pointer;
-            &:hover i {
-                color: $colorText;
-            }
-            i {
-                font-weight: bold;
-                font-size: 30px;
-            }
-        }
-        #prev {
-            position: absolute;
-            left: 0;
-        }
-        #next {
-            position: absolute;
-            right: 0;
-        }
-    }
 }
 </style>

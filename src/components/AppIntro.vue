@@ -12,6 +12,7 @@ export default {
     },
 
     methods: {
+
         searchMovies() {
 
             let myAPIMovie = 'https://api.themoviedb.org/3/search/movie';
@@ -47,6 +48,7 @@ export default {
             })
 
         },
+
     }
 
 }
@@ -73,7 +75,7 @@ export default {
 
 <style lang="scss" scoped>
 .bg-intro {
-    height: calc(100vh - 110px);
+    height: calc(100vh - 90px);
     background-image: url('https://wallpaperaccess.com/full/1512223.jpg');
     background-size: contain;
     background-position: center;
@@ -91,29 +93,29 @@ export default {
             font-size: 70px;
         }
         input {
-          display: block;
-          margin: 20px auto;
-          width: 550px;
-          height: 50px;
-          padding: 15px;
-          border-radius: 15px;
-          font-size: 17px;
-          &:focus {
-              outline: none;
-              border: 3px solid $mainColor;
-              box-shadow: 0px 0px 18px 3px $mainColor;
-          }
-      }
+            display: block;
+            margin: 20px auto;
+            width: 550px;
+            height: 50px;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 17px;
+            &:focus {
+                outline: none;
+                border: 3px solid $mainColor;
+                box-shadow: 0px 0px 18px 3px $mainColor;
+            }
+        }
     }
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(20,20,20,0.9); 
-    z-index: 0; 
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(20,20,20,0.9); 
+        z-index: 0; 
+    }
 }
 </style>
