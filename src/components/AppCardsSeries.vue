@@ -23,7 +23,7 @@ export default {
 
 <template>
 
-    <div class="card d-flex jc-center" v-for="(item, index) in store.resultsSeries.slice(store.firstCardSeries, store.lastCardSeries)">
+    <div class="card d-flex jc-center" v-for="item in store.resultsSeries.slice(store.firstCardSeries, store.lastCardSeries)">
       
       <div class="card-inner">
 
@@ -44,6 +44,7 @@ export default {
           <h4>
             Lingua originale:
             <span class="fi fi-gb" v-if="item.original_language == 'en'"></span>
+            <span class="fi fi-jp" v-else-if="item.original_language == 'ja'"></span>
             <span :class="`fi fi-${item.original_language}`" v-else></span>
           </h4>
 
@@ -51,6 +52,15 @@ export default {
             Valutazione:
             <span v-for="n in 5">
             <i :class="{'fa-solid': n <= convertNumber(item.vote_average), 'fa-regular': 5 - convertNumber(item.vote_average) }" class="fa-star"></i>
+            </span>
+          </h4>
+
+          <h4>
+            Genere: 
+            <span v-for="gen in store.seriesType">
+              <span v-if="item.genre_ids.includes(gen.id)"> 
+                {{ gen.name + ' ' }}
+              </span>
             </span>
           </h4>
 
@@ -105,11 +115,15 @@ export default {
     transform: rotateY(180deg);
     border-radius: 20px;
     p {
-      max-height: 250px;
+      max-height: 220px;
       overflow: auto;
     }
     h2, h4 {
+      color: $mainColor;
       margin: 10px 0;
+    }
+    span {
+      color: $colorText;
     }
   }
 }

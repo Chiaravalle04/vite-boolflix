@@ -32,7 +32,10 @@ export default {
       .then((response) => {
         console.log(response.data)
         this.store.resultsMovie = response.data.results;
-        console.log('movies', this.store.resultsMovie)
+        console.log('movies', this.store.resultsMovie);
+
+        this.store.firstCard = 0;
+        this.store.lastCard = 4;
       })
 
       axios // chiamata serie TV
@@ -46,7 +49,10 @@ export default {
       .then((response) => {
         console.log('series',response)
         this.store.resultsSeries = response.data.results
-        console.log('arrayseries', this.store.resultsSeries)
+        console.log('arrayseries', this.store.resultsSeries);
+
+        this.store.firstCardSeries = 0;
+        this.store.lastCardSeries = 4;
       })
 
     },
@@ -58,6 +64,24 @@ export default {
     reload () {
       location.reload()
     },
+
+  },
+
+  created() {
+    
+    axios
+      .get('https://api.themoviedb.org/3/genre/movie/list?api_key=9983fafc12ef7399a4bba69d8af1689f')
+      .then((response) => {
+        this.store.movieType = response.data.genres;
+        console.log(this.store.movieType)
+      }),
+
+    axios
+      .get('https://api.themoviedb.org/3/genre/tv/list?api_key=9983fafc12ef7399a4bba69d8af1689f')
+      .then((response) => {
+        this.store.seriesType = response.data.genres;
+        console.log(this.store.seriesType)
+      })
 
   },
 
