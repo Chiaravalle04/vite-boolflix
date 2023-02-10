@@ -70,14 +70,14 @@ export default {
   created() {
     
     axios
-      .get('https://api.themoviedb.org/3/genre/movie/list?api_key=9983fafc12ef7399a4bba69d8af1689f')
+      .get('https://api.themoviedb.org/3/genre/movie/list?api_key=9983fafc12ef7399a4bba69d8af1689f&language=it-IT')
       .then((response) => {
         this.store.movieType = response.data.genres;
         console.log(this.store.movieType)
       }),
 
     axios
-      .get('https://api.themoviedb.org/3/genre/tv/list?api_key=9983fafc12ef7399a4bba69d8af1689f')
+      .get('https://api.themoviedb.org/3/genre/tv/list?api_key=9983fafc12ef7399a4bba69d8af1689f&language=it-IT')
       .then((response) => {
         this.store.seriesType = response.data.genres;
         console.log(this.store.seriesType)
@@ -131,14 +131,14 @@ header {
         cursor: pointer;
       }
       input {
-          display: block;
-          width: 250px;
-          height: 40px;
-          padding: 15px;
-          border-radius: 15px;
-          &:focus {
-              outline: none;
-          }
+        display: block;
+        width: 250px;
+        height: 40px;
+        padding: 15px;
+        border-radius: 15px;
+        &:focus {
+          outline: none;
+        }
       }
     }
   }
