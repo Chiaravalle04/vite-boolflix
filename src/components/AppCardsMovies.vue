@@ -84,12 +84,13 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s;
+    transition: all 0.8s;
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   }
   &:hover .card-inner {
     transform: rotateY(180deg);
+    scale: 1.1;
   }
   .card-front {
     position: absolute;
@@ -107,15 +108,15 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
+    background-color: #343432;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     padding: 15px;
     color: #fff;
-    border: 2px solid #fff;
     transform: rotateY(180deg);
     border-radius: 20px;
     p {
-      max-height: 220px;
+      max-height: 230px;
       overflow: auto;
     }
     h2, h4 {
